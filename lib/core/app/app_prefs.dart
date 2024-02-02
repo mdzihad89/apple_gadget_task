@@ -22,7 +22,7 @@ class AppPreferences {
     return data;
   }
 
-Future<void> logout() async {
-  _sharedPreferences.remove(PREFS_KEY_CRENDENTIAL);
+Future<void> removeCredential() async {
+   _sharedPreferences.remove(PREFS_KEY_CRENDENTIAL);
 }
 }

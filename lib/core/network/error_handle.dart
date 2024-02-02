@@ -33,14 +33,13 @@ enum DataSource {
 
 
 class ResponseCode {
-  static const int SUCCESS = 200; // success with data
-  static const int BAD_REQUEST = 400; // failure, API rejected request
-  static const int UNAUTORISED = 401; // failure, user is not authorised
-  static const int FORBIDDEN = 403; //  failure, API rejected request
-  static const int INTERNAL_SERVER_ERROR = 500; // failure, crash in server side
-  static const int NOT_FOUND = 404; // failure, not found
+  static const int SUCCESS = 200;
+  static const int BAD_REQUEST = 400;
+  static const int UNAUTORISED = 500; //for that api server return 500 for unauthorized access
+  static const int FORBIDDEN = 403;
+  static const int INTERNAL_SERVER_ERROR = 404; //assuming server return 404 for internal server error
+  static const int NOT_FOUND = 404;
 
-  // local status code
   static const int CONNECT_TIMEOUT = -1;
   static const int CANCEL = -2;
   static const int RECIEVE_TIMEOUT = -3;
@@ -52,13 +51,12 @@ class ResponseCode {
 
 
 class ResponseMessage {
-  static const String SUCCESS = "Success"; // success with data
-  static const String BAD_REQUEST = "Bad Request"; // failure, API rejected request
-  static const String UNAUTORISED = "Unauthorised"; // failure, user is not authorised
-  static const String FORBIDDEN = "Forbidden"; //  failure, API rejected request
-  static const String INTERNAL_SERVER_ERROR = "Internal Server Error"; // failure, crash in server side
-  static const String NOT_FOUND = "Not Found"; // failure, not found
-
+  static const String SUCCESS = "Success";
+  static const String BAD_REQUEST = "Bad Request";
+  static const String UNAUTORISED = "Unauthorised";
+  static const String FORBIDDEN = "Forbidden";
+  static const String INTERNAL_SERVER_ERROR = "Internal Server Error";
+  static const String NOT_FOUND = "Not Found";
   // local status code
   static const String CONNECT_TIMEOUT = "Connection Timeout";
   static const String CANCEL = "Request Cancelled";

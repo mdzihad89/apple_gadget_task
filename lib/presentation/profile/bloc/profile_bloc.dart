@@ -10,13 +10,32 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final Repository repository;
 
   ProfileBloc({ required this.repository}) : super(ProfileInitial()) {
-    on<ProfileEvent>((event, emit) async{
-
+    on<ProfileEvent>((event, emit) async {
       emit(ProfileLoading());
-      final result =await repository.getAccountInformation();
+        final accountInfoResult = await repository.getAccountInformation();
+        final lastPhoneNumberResult = await repository.getLastFourNumbersPhone();
+        accountInfoResult.fold(
+              (failure) {
+            emit(ProfileFailure(failure.message));
+          },
+              (accountInfo) async {
 
-      result.fold((l) => emit(ProfileFailure(l.message)), (r) => emit(ProfileSuccess(r)));
+
+            lastPhoneNumberResult.fold(
+                  (failure) {
+                emit(ProfileFailure(failure.message));
+              },
+                  (lastPhoneNumber) {
+                emit(ProfileSuccess(
+                   accountInfo:  accountInfo,
+                  lastFourNumbersPhone: lastPhoneNumber,
+                ));
+              },
+            );
+          },
+        );
 
     });
+
   }
 }

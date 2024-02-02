@@ -6,3 +6,7 @@ class LoginButtonPressed extends AuthEvent {
  LoginRequestDto loginRequestDto;
   LoginButtonPressed({required this.loginRequestDto});
 }
+
+class LogoutButtonPressed extends AuthEvent {
+  LogoutButtonPressed();
+}

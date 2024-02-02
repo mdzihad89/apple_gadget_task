@@ -6,23 +6,23 @@ String accountInfoToJson(AccountInfo data) => json.encode(data.toJson());
 
 class AccountInfo {
   String? address;
-  double? balance;
+  dynamic balance;
   String? city;
   String? country;
-  int? currency;
-  int? currentTradesCount;
-  double? currentTradesVolume;
-  double? equity;
-  double? freeMargin;
+  dynamic currency;
+  dynamic currentTradesCount;
+  dynamic currentTradesVolume;
+  dynamic equity;
+  dynamic freeMargin;
   bool? isAnyOpenTrades;
   bool? isSwapFree;
-  int? leverage;
+  dynamic leverage;
   String? name;
   String? phone;
-  int? totalTradesCount;
-  double? totalTradesVolume;
-  int? type;
-  int? verificationLevel;
+  dynamic totalTradesCount;
+  dynamic totalTradesVolume;
+  dynamic type;
+  dynamic verificationLevel;
   String? zipCode;
 
   AccountInfo({

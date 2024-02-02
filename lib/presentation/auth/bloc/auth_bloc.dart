@@ -14,24 +14,35 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Repository repository;
 
-  AuthBloc({required this.repository}) : super(LoginInitial()) {
+  AuthBloc({required this.repository}) : super(AuthInitial()) {
     on<AuthEvent>((event, emit) async {
       if (event is LoginButtonPressed) {
-        emit(LoginLoading());
+        emit(AuthLoading());
         final result = await repository.login(event.loginRequestDto);
-        result.fold((l) => emit(LoginFailure(error: l.message)),
+        result.fold((l) => emit(AuthFailure(error: l.message)),
             (r) {
               if (r.result) {
 
-                emit(LoginSuccess());
+                emit(AuthSuccess());
 
               } else {
-                emit(LoginFailure(error: "Incorrect Credentials"));
+                emit(AuthFailure(error: "Incorrect Credentials"));
               }
             }
 
         );
       }
+
+        if (event is LogoutButtonPressed) {
+          emit(AuthLoading());
+          final result = await repository.logOut();
+          result.fold((l) => emit(AuthFailure(error: l.message)),
+              (r) {
+                  emit(AuthInitial());
+              }
+
+          );
+        }
     });
   }
 }

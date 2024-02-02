@@ -32,9 +32,9 @@ class _LoginPageState extends State<LoginPage> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
 
-          if(state is LoginSuccess){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-          }else if(state is LoginFailure){
+          if(state is AuthSuccess){
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomePage()), (route) => false );
+          }else if(state is AuthFailure){
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.error),
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
           }
         },
         builder: (context, state) {
-          if(state is LoginLoading){
+          if(state is AuthLoading){
             return const Center(child: CircularProgressIndicator());
           }
           return Padding(

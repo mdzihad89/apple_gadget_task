@@ -9,7 +9,8 @@ class ProfileLoading extends ProfileState {}
 
 class ProfileSuccess extends ProfileState {
   final AccountInfo accountInfo;
-  ProfileSuccess(this.accountInfo);
+  final String lastFourNumbersPhone;
+  ProfileSuccess({required this.accountInfo, required this.lastFourNumbersPhone});
 }
 
 class ProfileFailure extends ProfileState {
