@@ -89,10 +89,9 @@ class _LoginPageState extends State<LoginPage> {
                     BlocProvider.of<AuthBloc>(context).add(
                       LoginButtonPressed(
                         loginRequestDto: LoginRequestDto(
-                          // login: int.parse(_numberController.text),
-                          // password: _passwordController.text,
-                          login: 2088888,
-                          password: "ral11lod",
+                          login: int.parse(_numberController.text),
+                          password: _passwordController.text,
+
                         ),
                       ),
                     );
